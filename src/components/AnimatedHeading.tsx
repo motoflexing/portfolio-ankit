@@ -25,14 +25,15 @@ export function AnimatedHeading({
   const reduced = useReducedMotion();
 
   // Deterministic per-letter offsets so SSR/CSR match and renders are stable.
-  const offsets = useMemo(() => {
-    let seed = text.length * 97 + 7;
-    const rand = () => {
-      seed = (seed * 1664525 + 1013904223) % 4294967296;
-      return seed / 4294967296;
-    };
-    return text.split("").map(() => (rand() * 2 - 1) * 30); // -30..30
-  }, [text]);
+  // Pure index hash (no mutated closure state) → -30..30.
+  const offsets = useMemo(
+    () =>
+      text.split("").map((_, i) => {
+        const h = Math.sin((i + 1) * (text.length + 13) * 12.9898) * 43758.5453;
+        return ((h - Math.floor(h)) * 2 - 1) * 30;
+      }),
+    [text],
+  );
 
   const MotionTag = motion[Tag];
 

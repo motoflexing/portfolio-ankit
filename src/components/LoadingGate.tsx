@@ -30,8 +30,13 @@ export function LoadingGate() {
   const reduced = useReducedMotion();
 
   // Decide synchronously on mount whether the gate should play, so we never
-  // flash it on a session where it already ran.
-  const [active, setActive] = useState<boolean | null>(null);
+  // flash it on a session where it already ran and never trigger a cascading
+  // setState from an effect. This component is dynamic(ssr:false), so the lazy
+  // initializer always runs on the client where window/sessionStorage exist.
+  const [active, setActive] = useState<boolean>(() => {
+    if (reduced || typeof window === "undefined") return false;
+    return window.sessionStorage.getItem(SESSION_KEY) !== "1";
+  });
 
   const rootRef = useRef<HTMLDivElement>(null);
   const counterRef = useRef<HTMLSpanElement>(null);
@@ -40,17 +45,6 @@ export function LoadingGate() {
   const monoPathRef = useRef<SVGPathElement>(null);
   const panelTopRef = useRef<HTMLDivElement>(null);
   const panelBottomRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (reduced) {
-      setActive(false);
-      return;
-    }
-    const played =
-      typeof window !== "undefined" &&
-      window.sessionStorage.getItem(SESSION_KEY) === "1";
-    setActive(!played);
-  }, [reduced]);
 
   useEffect(() => {
     if (!active) return;

@@ -7,6 +7,7 @@ import { GrainOverlay } from "@/components/GrainOverlay";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { CustomCursor } from "@/components/CustomCursor";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
+import { LoadingGateMount } from "@/components/LoadingGateMount";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
@@ -97,6 +98,9 @@ export default function RootLayout({
         </SmoothScrollProvider>
 
         <Toaster />
+
+        {/* Cinematic first-visit loading gate (client-only, once per session) */}
+        <LoadingGateMount />
       </body>
     </html>
   );

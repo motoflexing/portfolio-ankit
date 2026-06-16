@@ -106,4 +106,25 @@ export const hero = {
     "I enjoy working across product thinking, interface design, application logic, deployment, and continuous improvement.",
   statement:
     "I am not focused on collecting technologies. I am focused on learning how to use them to build useful products.",
+
+  // --- Cinematic hero overhaul (Phase 2) ---
+  // The mono eyebrow above the display heading. Kept in data, never hardcoded.
+  eyebrowAlt: "CREATIVE TECHNOLOGIST",
+  // Display heading split into words, each rendered on its own line with a
+  // staggered clip-path reveal. Mirrors the editorial, line-broken treatment.
+  headingWords: ["Building", "Digital", "Experience"] as const,
+  // Primary/secondary CTA labels (component supplies the hrefs from site data).
+  ctaPrimary: "View Work",
+  ctaSecondary: "Let's Talk",
+  scrollHint: "SCROLL",
+} as const;
+
+/**
+ * Cinematic loading-gate copy (Phase 1). The gate plays once per session.
+ * Name is split for the letter-by-letter reveal; everything else is data so
+ * components never hard-code copy.
+ */
+export const loadingGate = {
+  name: "ANKIT DUBEY",
+  monogram: "AD",
 } as const;

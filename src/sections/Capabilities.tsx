@@ -6,6 +6,7 @@ import {
   SkillLevelDot,
   SkillLevelLegend,
 } from "@/components/SkillLevelTag";
+import { SkillsWeb } from "@/components/SkillsWeb";
 import { skillGroups } from "@/data/skills";
 
 /**
@@ -16,13 +17,21 @@ import { skillGroups } from "@/data/skills";
 export function Capabilities() {
   return (
     <Section index="03" label="Capabilities">
-      <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-        <SectionHeading
-          eyebrow="Technical capabilities"
-          title="The tools, used honestly"
-          lead="Grouped by area and tagged by how deeply each has actually been used — shipped, prototyped, or explored. No percentage bars, no inflated levels."
-        />
-        <SkillLevelLegend className="shrink-0 md:pb-1" />
+      <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-center lg:gap-12">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between lg:flex-col lg:items-start">
+          <SectionHeading
+            eyebrow="Technical capabilities"
+            title="The tools, used honestly"
+            lead="Grouped by area and tagged by how deeply each has actually been used — shipped, prototyped, or explored. No percentage bars, no inflated levels."
+          />
+          <SkillLevelLegend className="shrink-0 md:pb-1 lg:pb-0" />
+        </div>
+
+        {/* Decorative interactive skills web — the honest content lives in the
+            grid below, so this is purely a visual layer (aria-hidden). */}
+        <div aria-hidden="true">
+          <SkillsWeb />
+        </div>
       </div>
 
       <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-line bg-line md:grid-cols-2 lg:grid-cols-3">

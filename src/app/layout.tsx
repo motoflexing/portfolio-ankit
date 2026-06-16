@@ -6,6 +6,7 @@ import { site } from "@/data/site";
 import { GrainOverlay } from "@/components/GrainOverlay";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { CustomCursor } from "@/components/CustomCursor";
+import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
@@ -85,13 +86,15 @@ export default function RootLayout({
         <GrainOverlay />
         <CustomCursor />
 
-        <Nav />
+        <SmoothScrollProvider>
+          <Nav />
 
-        <main id="main" className="flex-1 pt-16">
-          {children}
-        </main>
+          <main id="main" className="flex-1 pt-16">
+            {children}
+          </main>
 
-        <Footer />
+          <Footer />
+        </SmoothScrollProvider>
 
         <Toaster />
       </body>

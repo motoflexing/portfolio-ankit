@@ -119,7 +119,9 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    /* Lenis owns smooth scrolling now (see lib/lenis.ts + SmoothScrollProvider).
+       CSS scroll-behavior is intentionally NOT set here so the two don't fight.
+       Reduced-motion users get native instant scrolling (Lenis isn't mounted). */
     -webkit-text-size-adjust: 100%;
   }
 

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { SocialIcon } from "@/components/SocialIcons";
+import { DraggableMonogram } from "@/components/DraggableMonogram";
 import { site } from "@/data/site";
 import { socialList } from "@/data/socials";
 
@@ -96,6 +97,12 @@ export function Footer() {
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
             Based in {site.base}
           </p>
+        </div>
+
+        {/* Easter egg: a throwable "AD" token (interact.js, desktop + motion
+            only). Decorative — the real identity mark is the Logo above. */}
+        <div className="mt-8 hidden lg:block">
+          <DraggableMonogram />
         </div>
       </div>
     </footer>

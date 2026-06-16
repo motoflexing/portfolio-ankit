@@ -28,6 +28,9 @@ export function ProductConstellation() {
   const reduced = useReducedMotion();
   const { ref: inViewRef, inView } = useInView<HTMLDivElement>();
   const wrapperRef = useRef<HTMLDivElement>(null);
+  // Hero scroll progress (0..1), written by GSAP ScrollTrigger and read inside
+  // the R3F frame loop to pull the camera back — no React state per frame.
+  const progressRef = useRef(0);
 
   // Defer mounting the WebGL bundle until after first paint + idle, so the
   // hero text and CTAs are interactive first.
@@ -55,14 +58,19 @@ export function ProductConstellation() {
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
       gsap.to(el, {
+        // Fade the visual back as the hero scrolls away (brief: -> 0.3 opacity)
         scale: 0.92,
-        opacity: 0.45,
+        opacity: 0.3,
         ease: "none",
         scrollTrigger: {
           trigger: el,
           start: "top top",
           end: "bottom top",
           scrub: 0.5,
+          // Feed normalized progress to the scene so the camera pulls back.
+          onUpdate: (self) => {
+            progressRef.current = self.progress;
+          },
         },
       });
     }, el);
@@ -82,7 +90,7 @@ export function ProductConstellation() {
     <div ref={inViewRef} className="h-full w-full">
       <div ref={wrapperRef} className="h-full w-full will-change-transform">
         {mountScene ? (
-          <ConstellationScene paused={paused} />
+          <ConstellationScene paused={paused} progressRef={progressRef} />
         ) : (
           <ConstellationFallback />
         )}

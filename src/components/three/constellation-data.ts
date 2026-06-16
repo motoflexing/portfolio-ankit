@@ -1,5 +1,6 @@
 import type * as THREE from "three";
 import { projects } from "@/data/projects";
+import type { ProjectStatus } from "@/types/project";
 
 /**
  * Node layout for the ProductConstellation. Each project becomes a node at a
@@ -18,6 +19,8 @@ export interface ConstellationNode {
   scale: number;
   /** Whether this product is live (gets a touch more presence). */
   live: boolean;
+  /** Real project status — drives node colour and pulse speed honestly. */
+  status: ProjectStatus;
 }
 
 // Stable hand-placed positions for up to 6 nodes (loose orbit shell).
@@ -38,6 +41,7 @@ export const constellationNodes: ConstellationNode[] = projects
     position: POSITIONS[i],
     scale: p.featured ? 0.16 : 0.12,
     live: p.status === "Live",
+    status: p.status,
   }));
 
 /** Pairs of node indices to connect with hairlines (near neighbours). */

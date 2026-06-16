@@ -29,10 +29,10 @@ export default function AboutPage() {
       {/* Intro */}
       <Section index="00" label="About" className="pt-16 md:pt-20">
         <p className="eyebrow mb-6">{aboutIntro.eyebrow}</p>
-        <h1 className="max-w-4xl font-display text-display-l font-semibold tracking-tight text-text">
+        <h1 className="max-w-2xl font-display text-display-l font-medium tracking-tight text-text">
           {aboutIntro.heading}
         </h1>
-        <div className="measure mt-8 space-y-5 text-base leading-relaxed text-text-muted md:text-lg">
+        <div className="text-body measure mt-6 space-y-4 text-text-muted">
           {aboutIntro.paragraphs.map((p, i) => (
             <p key={i}>{p}</p>
           ))}
@@ -57,7 +57,7 @@ export default function AboutPage() {
             <Reveal as="li" key={step.index} delay={i * 0.05}>
               <div className="flex h-full flex-col bg-surface p-6">
                 <span className="section-index">{step.index}</span>
-                <h3 className="mt-4 font-display text-base font-medium text-text">
+                <h3 className="text-subheading mt-4 text-text">
                   {step.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-text-muted">
@@ -81,7 +81,7 @@ export default function AboutPage() {
             <Reveal key={s.title} delay={(i % 3) * 0.05}>
               <Card className="h-full">
                 <CardBody>
-                  <h3 className="font-display text-h3 font-medium text-text">
+                  <h3 className="text-subheading text-text">
                     {s.title}
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-text-muted">
@@ -155,7 +155,7 @@ export default function AboutPage() {
                 <Card key={exp.title} className="h-full">
                   <CardBody>
                     <div className="flex flex-wrap items-baseline justify-between gap-2">
-                      <h3 className="font-display text-h3 font-medium text-text">
+                      <h3 className="text-subheading text-text">
                         {exp.title}
                       </h3>
                       <span className="font-mono text-xs text-text-faint">
@@ -204,7 +204,7 @@ export default function AboutPage() {
                 <Card key={edu.degree} className="h-full">
                   <CardBody>
                     <div className="flex flex-wrap items-baseline justify-between gap-2">
-                      <h3 className="font-display text-h3 font-medium text-text">
+                      <h3 className="text-subheading text-text">
                         {edu.degree}
                       </h3>
                       <span className="font-mono text-xs text-text-faint">
@@ -233,10 +233,10 @@ export default function AboutPage() {
         <Reveal>
           <div className="max-w-3xl">
             <p className="eyebrow mb-5">Motivation</p>
-            <h2 className="font-display text-h2 font-semibold tracking-tight text-text">
+            <h2 className="font-display text-h2 font-medium tracking-tight text-text">
               {motivation.heading}
             </h2>
-            <div className="measure mt-6 space-y-5 text-base leading-relaxed text-text-muted md:text-lg">
+            <div className="text-body measure mt-5 space-y-4 text-text-muted">
               {motivation.paragraphs.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}

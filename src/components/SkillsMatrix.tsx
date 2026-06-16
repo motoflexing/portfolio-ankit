@@ -91,10 +91,10 @@ export function SkillsMatrix() {
               >
                 <span className="flex items-baseline gap-4">
                   <span className="section-index">{group.index}</span>
-                  <span className="font-display text-base font-medium text-text">
+                  <span className="text-subheading text-text">
                     {group.name}
                   </span>
-                  <span className="font-mono text-xs text-text-faint">
+                  <span className="text-mono text-text-faint">
                     {group.skills.length}
                   </span>
                 </span>

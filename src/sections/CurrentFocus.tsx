@@ -24,12 +24,8 @@ export function CurrentFocus() {
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div className="grid gap-2 md:grid-cols-[0.9fr_1.1fr] md:gap-10">
-                <h3 className="font-display text-h3 font-medium text-text">
-                  {item.label}
-                </h3>
-                <p className="text-sm leading-relaxed text-text-muted md:text-base">
-                  {item.detail}
-                </p>
+                <h3 className="text-subheading text-text">{item.label}</h3>
+                <p className="text-small text-text-muted">{item.detail}</p>
               </div>
             </div>
           </Reveal>

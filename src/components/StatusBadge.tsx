@@ -58,7 +58,7 @@ export function StatusBadge({ status, className, dotOnly }: StatusBadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 font-mono text-xs tracking-wide",
+        "text-mono inline-flex items-center gap-2",
         s.label,
         className,
       )}
@@ -77,7 +77,7 @@ export function StatusBadge({ status, className, dotOnly }: StatusBadgeProps) {
           className={cn("relative inline-flex h-2 w-2 rounded-full", s.dot)}
         />
       </span>
-      {!dotOnly && <span className="uppercase">{status}</span>}
+      {!dotOnly && <span>{status}</span>}
     </span>
   );
 }

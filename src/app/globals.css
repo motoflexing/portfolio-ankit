@@ -88,26 +88,34 @@
   --radius-md: var(--radius);
   --radius-lg: calc(var(--radius) + 4px);
 
-  /* Typography scale — purposeful sizes, tight leading on display */
-  --text-display-xl: clamp(2.75rem, 7vw, 6rem);
-  --text-display-xl--line-height: 0.95;
+  /* ── Type scale — minimal & sleek (Linear / Vercel / Stripe register) ──
+     Token names are kept so existing `text-display-xl|l|h2|h3` utilities pick
+     up the new restrained sizes with no migration. The plain .text-* classes
+     below the @theme block map to the same values for the brief's API. */
+
+  /* Hero display — controlled, not massive */
+  --text-display-xl: clamp(2rem, 3.5vw, 3rem);
+  --text-display-xl--line-height: 1.1;
   --text-display-xl--letter-spacing: -0.03em;
 
-  --text-display-l: clamp(2.25rem, 5vw, 4rem);
-  --text-display-l--line-height: 1;
+  /* Secondary display (page H1s) — slightly tighter than hero */
+  --text-display-l: clamp(1.875rem, 3vw, 2.5rem);
+  --text-display-l--line-height: 1.1;
   --text-display-l--letter-spacing: -0.025em;
 
-  --text-h2: clamp(1.75rem, 3.5vw, 2.75rem);
-  --text-h2--line-height: 1.05;
-  --text-h2--letter-spacing: -0.02em;
+  /* Section headings — small and authoritative */
+  --text-h2: clamp(1rem, 1.5vw, 1.25rem);
+  --text-h2--line-height: 1.3;
+  --text-h2--letter-spacing: -0.01em;
 
-  --text-h3: clamp(1.25rem, 2vw, 1.625rem);
-  --text-h3--line-height: 1.15;
-  --text-h3--letter-spacing: -0.01em;
+  /* Sub-headings / card titles */
+  --text-h3: 0.9rem;
+  --text-h3--line-height: 1.4;
+  --text-h3--letter-spacing: -0.005em;
 
-  --text-mono-label: 0.75rem;
-  --text-mono-label--line-height: 1.4;
-  --text-mono-label--letter-spacing: 0.12em;
+  --text-mono-label: 0.688rem;
+  --text-mono-label--line-height: 1;
+  --text-mono-label--letter-spacing: 0.1em;
 }
 
 /* ============================================================
@@ -129,11 +137,28 @@
     background-color: var(--bg);
     color: var(--text);
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    /* Smaller, calmer base — 14px instead of the browser's 16px. Colours and
+       paragraph widths are intentionally NOT reset globally (handled per
+       component) so the locked palette and layouts don't shift. */
+    font-size: 0.875rem;
+    line-height: 1.6;
     font-feature-settings: "ss01", "cv01";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
+  }
+
+  /* Headings stay full-brightness and never go heavier than medium (500) —
+     hierarchy comes from size and space, not weight. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--text);
+    font-weight: 500;
   }
 
   ::selection {
@@ -177,6 +202,53 @@
    Reusable design-system utilities
    ============================================================ */
 @layer components {
+  /* ── Named type classes (minimal scale) ──
+     These mirror the @theme token values above and give the brief's explicit
+     class API. Components may use either these or the Tailwind text-* tokens. */
+  .text-display {
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+  .text-heading {
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .text-subheading {
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.005em;
+  }
+  .text-body {
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0;
+  }
+  .text-small {
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+  .text-mono {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 0.688rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
   /* Mono eyebrow / technical label */
   .eyebrow {
     font-family: var(--font-mono), ui-monospace, monospace;

@@ -22,7 +22,7 @@ export default function ProjectsPage() {
         <AnimatedHeading
           as="h1"
           text={projectsIntro.heroWord}
-          className="font-display text-display-xl font-semibold leading-[0.9] tracking-tight text-text"
+          className="font-display text-display-xl font-medium leading-[1.05] tracking-tight text-text"
         />
         <div className="mt-6">
           <SectionHeading

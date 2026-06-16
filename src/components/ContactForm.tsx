@@ -300,7 +300,7 @@ function SuccessPanel({
         />
       </svg>
       <div>
-        <h3 className="font-display text-h3 font-medium text-text">
+        <h3 className="text-subheading text-text">
           Message sent
         </h3>
         <p className="measure mt-2 text-sm leading-relaxed text-text-muted">

@@ -130,7 +130,7 @@ function ShowcasePanel({ project }: { project: Project }) {
           <StatusBadge status={project.status} />
         </div>
         <div className="absolute bottom-6 left-6">
-          <p className="font-display text-2xl font-semibold tracking-tight text-text md:text-3xl">
+          <p className="text-heading tracking-tight text-text">
             {project.title}
           </p>
         </div>
@@ -138,7 +138,7 @@ function ShowcasePanel({ project }: { project: Project }) {
       </div>
 
       <div className="p-6 md:p-8">
-        <p className="text-sm leading-relaxed text-text-muted md:text-base">
+        <p className="text-small text-text-muted">
           {project.shortDescription}
         </p>
 

@@ -88,7 +88,7 @@ export function Statement() {
         <LazyScene Scene={GridFieldScene} className="h-full w-full" />
       </div>
 
-      <p className="relative mx-auto max-w-4xl text-center font-display text-h2 font-medium leading-tight tracking-tight text-text">
+      <p className="relative mx-auto max-w-3xl text-center font-display text-display-l font-medium leading-[1.15] tracking-tight text-text">
         {/* Screen readers get the clean sentence; visual words are aria-hidden */}
         <span className="sr-only">
           {before}

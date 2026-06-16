@@ -88,7 +88,10 @@ export default async function CaseStudyPage({
           </div>
 
           <CaseStudyTitle title={project.title} />
-          <p className="measure mt-5 text-lg leading-relaxed text-text-muted">
+          <p
+            className="text-body mt-5 text-text-muted"
+            style={{ maxWidth: "60ch", lineHeight: 1.7 }}
+          >
             {project.fullDescription}
           </p>
 
@@ -184,7 +187,7 @@ export default async function CaseStudyPage({
         {/* Key features — honest states */}
         <section className="border-t border-line py-10 md:py-12">
           <BlockHeading index="07" title="Key features" />
-          <p className="measure mt-5 text-base leading-relaxed text-text-muted">
+          <p className="text-body measure mt-4 text-text-muted">
             Every feature is labelled by its real state. Nothing planned is
             shown as shipped.
           </p>

@@ -7,11 +7,9 @@
 /** The opening narrative — the core "who I am" message. */
 export const aboutIntro = {
   eyebrow: "Who I am",
-  heading: "I'm a developer who thinks like a product builder.",
+  heading: "A developer who thinks like a product builder.",
   paragraphs: [
-    "I'm Ankit Dubey — a software developer focused on building useful products, not just writing code. I came to engineering through content creation and digital storytelling, and that background still shapes how I work: I think about the person using the thing, not only the system behind it.",
-    "I care about the full journey of a product — understanding the problem, structuring it, building the core experience, testing it against real workflows, then shipping and learning. I'd rather own that whole arc than be handed a single ticket in isolation.",
-    "I deliberately invest in fundamentals over getting locked into one framework. Tools change; the way you reason about problems, data, and users doesn't. Long term, I want to grow into a strong engineer and a founder building under the MotoFlexing ecosystem.",
+    "I build useful products, not just code. I care about the whole arc — problem, structure, build, ship, learn.",
   ],
 } as const;
 
@@ -26,32 +24,27 @@ export const approachSteps: ApproachStep[] = [
   {
     index: "01",
     title: "Understand the problem",
-    description:
-      "Start with the real problem and the people who have it — before any code, any framework, any feature list.",
+    description: "Start with the real problem and the people who have it.",
   },
   {
     index: "02",
     title: "Structure the product",
-    description:
-      "Shape the problem into a product: roles, data, flows, and the boundaries that keep it coherent as it grows.",
+    description: "Shape it into roles, data, and flows that stay coherent.",
   },
   {
     index: "03",
-    title: "Build the core experience",
-    description:
-      "Build the essential path first and make it genuinely work, rather than scattering half-finished features.",
+    title: "Build the core",
+    description: "Make the essential path genuinely work first.",
   },
   {
     index: "04",
     title: "Test real workflows",
-    description:
-      "Validate against how people actually use it — real workflows and real edge cases, not just a happy-path demo.",
+    description: "Validate against how people actually use it.",
   },
   {
     index: "05",
     title: "Ship and learn",
-    description:
-      "Deploy it, watch how it behaves, and improve. Shipping is where the real feedback starts, not where it ends.",
+    description: "Deploy, watch, improve. Shipping starts the feedback.",
   },
 ];
 
@@ -64,33 +57,27 @@ export interface Strength {
 export const strengths: Strength[] = [
   {
     title: "Product thinking",
-    support:
-      "I scope features around the problem and the user, which is why my projects ship as coherent products rather than piles of code.",
+    support: "Features scoped around the problem and the user.",
   },
   {
     title: "Full-stack delivery",
-    support:
-      "I take work from interface to application logic to deployment — OfficeOS went from idea to a live multi-tenant SaaS this way.",
+    support: "From interface to logic to deployment.",
   },
   {
     title: "Honest engineering",
-    support:
-      "I label what's shipped, prototyped, or planned, because trustworthy software starts with telling the truth about its state.",
+    support: "Shipped, prototyped, or planned — labelled truthfully.",
   },
   {
     title: "Learning velocity",
-    support:
-      "I move across web, mobile, AI, and game tooling quickly by leaning on fundamentals instead of memorising one stack.",
+    support: "Fundamentals over memorising one stack.",
   },
   {
     title: "Design sensibility",
-    support:
-      "My content-creation background means I care how a product looks, feels, and communicates — not only whether it functions.",
+    support: "How a product feels, not only how it functions.",
   },
   {
     title: "Shipping discipline",
-    support:
-      "I finish and deploy things; several MotoFlexing products are live, not stuck forever as private experiments.",
+    support: "I finish and deploy — several products are live.",
   },
 ];
 
@@ -98,7 +85,6 @@ export const strengths: Strength[] = [
 export const motivation = {
   heading: "What keeps me building",
   paragraphs: [
-    "I build because I like turning a vague idea into something real that people can actually open and use. There's a specific satisfaction in watching a product go from a sketch to a live deployment that someone relies on.",
-    "Building in public keeps me honest and keeps me moving — sharing the progress, the launches, and the parts that don't work yet. The goal isn't to look finished; it's to keep getting better and to build a body of work I can stand behind.",
+    "Turning a vague idea into something real that people actually use.",
   ],
 } as const;

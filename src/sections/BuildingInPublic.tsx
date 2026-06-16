@@ -16,17 +16,17 @@ export function BuildingInPublic() {
     <Section index="05" label="In Public">
       <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
         <div>
-          <SectionHeading
-            eyebrow="Building in public"
-            title={buildingInPublic.lead}
-            lead={buildingInPublic.body}
-          />
+          <SectionHeading eyebrow="In public" title="Building in public" />
+
+          <p className="text-body mt-6 max-w-md text-text-muted">
+            {buildingInPublic.body}
+          </p>
 
           <ul className="mt-8 flex flex-wrap gap-2">
             {buildingInPublic.topics.map((topic) => (
               <li
                 key={topic}
-                className="card-hairline px-3 py-1.5 font-mono text-xs text-text-faint"
+                className="text-mono card-hairline px-3 py-1.5 text-text-faint"
               >
                 {topic}
               </li>
@@ -58,10 +58,8 @@ export function BuildingInPublic() {
                     <ArrowUpRight className="h-4 w-4 text-text-faint transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-text" />
                   </div>
                   <div>
-                    <p className="font-display text-base font-medium text-text">
-                      {social.label}
-                    </p>
-                    <p className="mt-1 font-mono text-xs text-text-faint">
+                    <p className="text-subheading text-text">{social.label}</p>
+                    <p className="text-mono mt-1 text-text-faint">
                       {social.handle}
                     </p>
                   </div>

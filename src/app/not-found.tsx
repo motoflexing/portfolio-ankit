@@ -11,10 +11,10 @@ export default function NotFound() {
         </div>
 
         <p className="eyebrow mb-6">Error · 404</p>
-        <h1 className="font-display text-display-xl font-semibold text-text">
+        <h1 className="font-display text-display-xl font-medium text-text">
           Lost the <span className="text-accent">thread</span>.
         </h1>
-        <p className="measure mt-6 text-lg leading-relaxed text-text-muted">
+        <p className="text-body measure mt-5 text-text-muted">
           That page doesn&apos;t exist — it may have moved, or never shipped.
           Let&apos;s get you back to something real.
         </p>

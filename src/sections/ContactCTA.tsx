@@ -33,24 +33,20 @@ export function ContactCTA() {
 
           <div className="relative max-w-2xl">
             <p className="eyebrow mb-5">Open to work & collaboration</p>
-            <h2 className="font-display text-display-l font-semibold leading-[1.02] tracking-tight text-text">
+            <h2 className="text-display font-medium leading-[1.1] text-text">
               Let&apos;s build something{" "}
               <span className="text-accent">useful</span>.
             </h2>
-            <p className="measure mt-6 text-base leading-relaxed text-text-muted md:text-lg">
+            <p className="text-body measure mt-5 text-text-muted">
               {site.status}
             </p>
 
-            <div className="mt-9 flex flex-wrap items-center gap-4">
-              <ActionButton href="/contact" variant="primary" size="lg" magnetic>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <ActionButton href="/contact" variant="primary" magnetic>
                 Get in touch
                 <ArrowRight />
               </ActionButton>
-              <ActionButton
-                href={`mailto:${site.email}`}
-                variant="outline"
-                size="lg"
-              >
+              <ActionButton href={`mailto:${site.email}`} variant="outline">
                 {site.email}
               </ActionButton>
             </div>

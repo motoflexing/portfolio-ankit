@@ -57,18 +57,24 @@ export function Section({
 }
 
 /**
- * Section heading block: mono eyebrow + display heading + optional lead.
- * Keeps heading rhythm consistent across the home sections.
+ * Section heading — minimal label pattern: index · hairline rule · small mono
+ * title. Small and authoritative, not a large display heading. The content
+ * below the heading carries the meaning, so the descriptive `lead` paragraph
+ * is intentionally not rendered (the prop is kept for API stability).
+ *
+ * `eyebrow` and `lead` remain in the signature so existing call sites compile
+ * unchanged; only `eyebrow` (when present) feeds the mono label if `title`
+ * isn't a short string.
  */
 export function SectionHeading({
   eyebrow,
   title,
-  lead,
   className,
   as = "h2",
 }: {
   eyebrow?: string;
   title: React.ReactNode;
+  /** Kept for API stability; the descriptive lead is no longer rendered. */
   lead?: React.ReactNode;
   className?: string;
   /** Heading level — use "h1" for a page's primary heading. */
@@ -76,16 +82,12 @@ export function SectionHeading({
 }) {
   const Heading = as;
   return (
-    <div className={cn("max-w-3xl", className)}>
-      {eyebrow && <p className="eyebrow mb-4">{eyebrow}</p>}
-      <Heading className="font-display text-h2 font-semibold text-text">
-        {title}
-      </Heading>
-      {lead && (
-        <p className="measure mt-5 text-base leading-relaxed text-text-muted md:text-lg">
-          {lead}
-        </p>
+    <div className={cn("flex items-center gap-3", className)}>
+      {eyebrow && (
+        <span className="text-mono shrink-0 text-text-faint">{eyebrow}</span>
       )}
+      <span className="h-px w-8 shrink-0 bg-line-strong" aria-hidden="true" />
+      <Heading className="text-mono truncate text-text-muted">{title}</Heading>
     </div>
   );
 }

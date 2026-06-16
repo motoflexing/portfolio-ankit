@@ -26,11 +26,11 @@ export default function ContactPage() {
         {/* Form column */}
         <div>
           <p className="eyebrow mb-6">Get in touch</p>
-          <h1 className="font-display text-display-l font-semibold tracking-tight text-text">
+          <h1 className="font-display text-display-l font-medium tracking-tight text-text">
             Let&apos;s build something{" "}
             <span className="text-accent">useful</span>.
           </h1>
-          <p className="measure mt-6 text-base leading-relaxed text-text-muted md:text-lg">
+          <p className="text-body measure mt-5 text-text-muted">
             I&apos;m open to junior software roles, internships, freelance
             projects, product collaborations, and startup conversations. Tell me
             what you&apos;re working on and I&apos;ll get back to you.

@@ -39,10 +39,10 @@ export function JourneyPreview() {
                 <span className="section-index">{stage.index}</span>
                 <span className="eyebrow text-text-faint">{stage.phase}</span>
               </div>
-              <h3 className="mt-5 font-display text-base font-medium text-text">
+              <h3 className="text-subheading mt-5 text-text">
                 {stage.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-text-muted">
+              <p className="text-small mt-2 text-text-muted">
                 {stage.description}
               </p>
             </div>

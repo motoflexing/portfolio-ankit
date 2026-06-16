@@ -85,9 +85,9 @@ export function Nav() {
                     href={link.href}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "group relative font-mono text-xs uppercase tracking-widest transition-colors",
+                      "group text-small relative transition-colors",
                       active
-                        ? "text-text"
+                        ? "font-medium text-text"
                         : "text-text-muted hover:text-text",
                     )}
                   >
@@ -179,7 +179,7 @@ export function Nav() {
                             : "text-text-muted hover:bg-surface-2 hover:text-text",
                         )}
                       >
-                        <span className="font-display text-2xl tracking-tight">
+                        <span className="text-subheading tracking-tight">
                           {link.label}
                         </span>
                         <span className="section-index">{link.index}</span>

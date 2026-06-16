@@ -34,7 +34,7 @@ export function Hero({ visual }: { visual?: React.ReactNode }) {
 
   return (
     <section
-      className="container-rhythm relative grid min-h-[92vh] items-center gap-12 py-20 lg:grid-cols-[45fr_55fr] lg:gap-10"
+      className="container-rhythm relative grid min-h-[88vh] items-center gap-12 pt-24 pb-20 lg:grid-cols-[45fr_55fr] lg:gap-10"
       aria-label="Introduction"
     >
       {/* Editorial margin index */}
@@ -44,10 +44,9 @@ export function Hero({ visual }: { visual?: React.ReactNode }) {
 
       {/* Text column */}
       <div className="relative lg:pl-(--grid-margin)">
-        {/* Mono accent eyebrow */}
+        {/* Mono eyebrow */}
         <motion.p
-          className="mb-7 font-mono text-xs font-medium uppercase text-accent"
-          style={{ letterSpacing: "0.15em" }}
+          className="text-mono mb-5 text-text-faint"
           initial={reduced ? false : { opacity: 0, y: 10 }}
           animate={reduced ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -56,9 +55,9 @@ export function Hero({ visual }: { visual?: React.ReactNode }) {
         </motion.p>
 
         {/* Display heading — one word per line, clip-path wipe reveal */}
-        <h1 className="font-display text-display-xl font-semibold leading-[0.95] tracking-tight text-text">
+        <h1 className="text-display flex flex-col gap-1 text-text">
           {hero.headingWords.map((word, i) => (
-            <span key={word} className="block overflow-hidden py-[0.04em]">
+            <span key={word} className="block overflow-hidden py-[0.02em]">
               <motion.span
                 className="inline-block"
                 custom={i}
@@ -72,9 +71,9 @@ export function Hero({ visual }: { visual?: React.ReactNode }) {
           ))}
         </h1>
 
-        {/* Subtext — delayed fade */}
+        {/* Supporting — one clean line */}
         <motion.p
-          className="measure mt-7 text-lg leading-relaxed text-text-muted"
+          className="text-body mt-5 text-text-muted"
           initial={reduced ? false : { opacity: 0, y: 12 }}
           animate={reduced ? undefined : { opacity: 1, y: 0 }}
           transition={{ delay: 0.75, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -84,34 +83,32 @@ export function Hero({ visual }: { visual?: React.ReactNode }) {
 
         {/* CTAs */}
         <motion.div
-          className="mt-9 flex flex-wrap items-center gap-4"
+          className="mt-8 flex flex-wrap items-center gap-3"
           initial={reduced ? false : { opacity: 0, y: 12 }}
           animate={reduced ? undefined : { opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <ActionButton href="/projects" variant="primary" size="lg" magnetic>
+          <ActionButton href="/projects" variant="primary" magnetic>
             {hero.ctaPrimary}
             <ArrowRight />
           </ActionButton>
-          <ActionButton href="/contact" variant="ghost" size="lg">
+          <ActionButton href="/contact" variant="ghost">
             {hero.ctaSecondary}
           </ActionButton>
         </motion.div>
 
         {/* Availability indicator — subtle, honest */}
-        <div className="mt-10 flex items-start gap-3 border-t border-line pt-6">
+        <div className="mt-8 flex items-start gap-3 border-t border-line pt-6">
           <span className="relative mt-1 inline-flex h-2 w-2 shrink-0">
             <span className="absolute inline-flex h-full w-full rounded-full bg-accent/40 motion-safe:animate-ping" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
           </span>
-          <p className="max-w-md font-mono text-xs leading-relaxed text-text-muted">
-            {site.status}
-          </p>
+          <p className="text-small max-w-md text-text-muted">{site.status}</p>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator — chevron only */}
         <motion.div
-          className="mt-12 flex items-center gap-3 text-text-faint"
+          className="mt-8 text-text-faint"
           initial={reduced ? false : { opacity: 0 }}
           animate={reduced ? undefined : { opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.6 }}
@@ -120,9 +117,6 @@ export function Hero({ visual }: { visual?: React.ReactNode }) {
           <ChevronDown
             className={`h-4 w-4${reduced ? "" : " motion-safe:animate-bounce"}`}
           />
-          <span className="font-mono text-[0.7rem] uppercase tracking-[0.2em]">
-            {hero.scrollHint}
-          </span>
         </motion.div>
       </div>
 

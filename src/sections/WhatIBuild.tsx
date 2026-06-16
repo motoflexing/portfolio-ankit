@@ -27,10 +27,8 @@ export function WhatIBuild() {
             >
               <CardBody className="flex h-full flex-col">
                 <span className="section-index">{card.index}</span>
-                <h3 className="mt-5 font-display text-h3 font-medium text-text">
-                  {card.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-text-muted">
+                <h3 className="text-subheading mt-5 text-text">{card.title}</h3>
+                <p className="text-small mt-2 line-clamp-2 text-text-muted">
                   {card.description}
                 </p>
               </CardBody>

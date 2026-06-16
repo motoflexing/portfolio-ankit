@@ -39,16 +39,14 @@ export function Capabilities() {
           <Reveal key={group.name} delay={(i % 3) * 0.05}>
             <div className="flex h-full flex-col bg-surface p-6">
               <div className="flex items-baseline justify-between">
-                <h3 className="font-display text-base font-medium text-text">
-                  {group.name}
-                </h3>
+                <h3 className="text-subheading text-text">{group.name}</h3>
                 <span className="section-index">{group.index}</span>
               </div>
               <ul className="mt-4 flex flex-col gap-2.5">
                 {group.skills.map((skill) => (
                   <li
                     key={skill.name}
-                    className="flex items-center gap-2.5 text-sm text-text-muted"
+                    className="text-small flex items-center gap-2.5 text-text-muted"
                   >
                     <SkillLevelDot level={skill.level} />
                     <span>{skill.name}</span>

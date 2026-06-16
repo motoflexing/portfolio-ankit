@@ -18,7 +18,7 @@ export function CaseStudyTitle({ title }: { title: string }) {
   return (
     <h1
       aria-label={title}
-      className="mt-6 font-display text-display-l font-semibold tracking-tight text-text"
+      className="mt-6 font-display text-display-l font-medium tracking-tight text-text"
     >
       <span className="sr-only">{title}</span>
       <span aria-hidden="true">

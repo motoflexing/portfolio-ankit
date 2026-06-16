@@ -20,7 +20,7 @@ export function ProseBlock({
   return (
     <section className="border-t border-line py-10 md:py-12">
       <BlockHeading index={index} title={title} />
-      <p className="measure mt-5 text-base leading-relaxed text-text-muted md:text-lg">
+      <p className="text-body measure mt-4 text-text-muted" style={{ lineHeight: 1.7 }}>
         {body}
       </p>
     </section>
@@ -44,15 +44,13 @@ export function ListBlock({
     <section className="border-t border-line py-10 md:py-12">
       <BlockHeading index={index} title={title} />
       {lead && (
-        <p className="measure mt-5 text-base leading-relaxed text-text-muted">
-          {lead}
-        </p>
+        <p className="text-body measure mt-4 text-text-muted">{lead}</p>
       )}
       <ul className="mt-6 grid gap-3 sm:grid-cols-2">
         {items.map((item) => (
           <li
             key={item}
-            className="flex gap-2 text-sm leading-relaxed text-text-muted"
+            className="text-small flex gap-2 text-text-muted"
           >
             <Dot className="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
             <span>{item}</span>
@@ -72,9 +70,10 @@ export function BlockHeading({
   title: string;
 }) {
   return (
-    <div className="flex items-baseline gap-4">
-      <span className="section-index">{index}</span>
-      <h2 className="font-display text-h2 font-semibold text-text">{title}</h2>
+    <div className="flex items-center gap-3">
+      <span className="text-mono shrink-0 text-text-faint">{index}</span>
+      <span className="h-px w-8 shrink-0 bg-line-strong" aria-hidden="true" />
+      <h2 className="text-mono text-text-muted">{title}</h2>
     </div>
   );
 }
@@ -89,10 +88,8 @@ export function MetaRow({
 }) {
   return (
     <div className="flex flex-col gap-1 border-b border-line py-3 last:border-b-0">
-      <dt className="font-mono text-xs uppercase tracking-wide text-text-faint">
-        {label}
-      </dt>
-      <dd className="text-sm text-text">{children}</dd>
+      <dt className="text-mono text-text-faint">{label}</dt>
+      <dd className="text-small text-text">{children}</dd>
     </div>
   );
 }

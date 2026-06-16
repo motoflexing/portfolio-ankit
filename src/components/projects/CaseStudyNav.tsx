@@ -29,7 +29,7 @@ export function CaseStudyNav({
             <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
             Previous
           </span>
-          <span className="font-display text-h3 font-medium text-text">
+          <span className="text-subheading text-text">
             {prev.title}
           </span>
           <StatusBadge status={prev.status} />
@@ -44,7 +44,7 @@ export function CaseStudyNav({
             Next
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
           </span>
-          <span className="font-display text-h3 font-medium text-text">
+          <span className="text-subheading text-text">
             {next.title}
           </span>
           <StatusBadge status={next.status} />

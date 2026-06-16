@@ -10,43 +10,37 @@ export interface BuildCard {
   description: string;
 }
 
-/** "What I Build" — six categories with one tight paragraph each. */
+/** "What I Build" — six categories, one tight line each. */
 export const buildCards: BuildCard[] = [
   {
     index: "01",
     title: "SaaS Platforms",
-    description:
-      "Multi-role, multi-tenant products with authentication, role-based access, and real operational workflows — built to be used by teams, not just demoed.",
+    description: "Multi-tenant products with roles, auth, and real workflows.",
   },
   {
     index: "02",
     title: "Business Software",
-    description:
-      "Internal tools and operations software that replace scattered spreadsheets and chats with one structured, access-aware source of truth.",
+    description: "Internal tools that replace scattered spreadsheets.",
   },
   {
     index: "03",
     title: "AI-Powered Products",
-    description:
-      "Products where AI is an honest assistive layer — added carefully, scoped to what actually works, and never oversold as more than it is.",
+    description: "AI as an honest assistive layer — scoped to what works.",
   },
   {
     index: "04",
     title: "Interactive Websites",
-    description:
-      "Premium, motion-led web experiences with editorial design, considered interaction, and the performance and SEO fundamentals to back them up.",
+    description: "Motion-led web with the performance to back it up.",
   },
   {
     index: "05",
     title: "Mobile Applications",
-    description:
-      "Mobile-first apps with Flutter and Firebase, including role-based interfaces and the discipline of shipping inside a team on real deadlines.",
+    description: "Flutter and Firebase apps with role-based interfaces.",
   },
   {
     index: "06",
     title: "Games & Experiments",
-    description:
-      "Browser games with accounts, scoring, and leaderboards — plus experimental projects that exist to learn, not to pretend to be finished.",
+    description: "Browser games with accounts, scoring, and leaderboards.",
   },
 ];
 
@@ -58,31 +52,27 @@ export interface FocusItem {
 
 export const currentFocus: FocusItem[] = [
   {
-    label: "Deepening engineering fundamentals",
-    detail:
-      "Prioritising strong fundamentals over single-framework lock-in, so the tools change but the thinking stays solid.",
+    label: "Engineering fundamentals",
+    detail: "Fundamentals over framework lock-in.",
   },
   {
-    label: "Maturing the MotoFlexing products",
-    detail:
-      "Moving OfficeOS, Games, and the AI Resume platform forward — from working features toward reliable, polished products.",
+    label: "Maturing the products",
+    detail: "OfficeOS, Games, and AI Resume — toward polished.",
   },
   {
     label: "Honest AI integration",
-    detail:
-      "Exploring where AI genuinely helps inside real products, and shipping it only once it actually works.",
+    detail: "Shipping AI only once it actually works.",
   },
   {
     label: "Building in public",
-    detail:
-      "Documenting the process — progress, launches, and the parts that don't work yet — across the MotoFlexing channels.",
+    detail: "Documenting the real process, not a highlight reel.",
   },
 ];
 
 /** "Building in Public" — what Ankit shares and why. */
 export const buildingInPublic = {
-  lead: "I build in public — documenting the real process, not a highlight reel.",
-  body: "Across YouTube, LinkedIn, Instagram, and GitHub I share product development, coding progress, SaaS experiments, AI tooling, the challenges and the launches — alongside the discipline, growth, and behind-the-scenes work that rarely makes it into a portfolio. The point isn't to look finished; it's to show how things actually get built.",
+  lead: "Building in public.",
+  body: "Sharing the real process — progress, launches, and the parts that don't work yet.",
   topics: [
     "Product development",
     "Coding progress",
@@ -95,28 +85,26 @@ export const buildingInPublic = {
 
 /** Hero copy. */
 export const hero = {
-  eyebrow: "Ankit Dubey · Software Developer",
+  eyebrow: "Software Developer",
   // Heading rendered with accent emphasis on the marked words in the component.
-  headingLead: "I turn ambitious ideas into",
+  headingLead: "Building",
   headingAccent: "working",
-  headingTail: "digital products.",
-  supporting:
-    "Software developer and product builder creating SaaS platforms, AI-powered tools, business applications, interactive websites, mobile experiences, and experimental products.",
-  secondary:
-    "I enjoy working across product thinking, interface design, application logic, deployment, and continuous improvement.",
+  headingTail: "products.",
+  // One clean supporting line, under ten words.
+  supporting: "Code, design, and ship — end to end.",
+  secondary: "",
   statement:
-    "I am not focused on collecting technologies. I am focused on learning how to use them to build useful products.",
+    "Not collecting technologies — learning to use them to build useful products.",
 
-  // --- Cinematic hero overhaul (Phase 2) ---
   // The mono eyebrow above the display heading. Kept in data, never hardcoded.
-  eyebrowAlt: "CREATIVE TECHNOLOGIST",
-  // Display heading split into words, each rendered on its own line with a
-  // staggered clip-path reveal. Mirrors the editorial, line-broken treatment.
-  headingWords: ["Building", "Digital", "Experience"] as const,
+  eyebrowAlt: "Software Developer",
+  // Display heading, split into short words rendered one per line with a
+  // staggered clip-path reveal. Max two words / two lines.
+  headingWords: ["Building", "Products."] as const,
   // Primary/secondary CTA labels (component supplies the hrefs from site data).
   ctaPrimary: "View Work",
-  ctaSecondary: "Let's Talk",
-  scrollHint: "SCROLL",
+  ctaSecondary: "Get in Touch",
+  scrollHint: "Scroll",
 } as const;
 
 /**

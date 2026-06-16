@@ -127,7 +127,7 @@ export function JourneyTimeline() {
                         {stage.phase}
                       </span>
                     </div>
-                    <h3 className="mt-3 font-display text-h3 font-medium text-text">
+                    <h3 className="text-subheading mt-3 text-text">
                       {stage.title}
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-text-muted">

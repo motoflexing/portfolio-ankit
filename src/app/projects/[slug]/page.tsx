@@ -15,6 +15,8 @@ import { ActionButton } from "@/components/ActionButton";
 import { FeatureList } from "@/components/projects/FeatureList";
 import { ProjectGallery } from "@/components/projects/ProjectGallery";
 import { CaseStudyNav } from "@/components/projects/CaseStudyNav";
+import { CaseStudyTitle } from "@/components/projects/CaseStudyTitle";
+import { TechStackVisual } from "@/components/projects/TechStackVisual";
 import {
   ProseBlock,
   ListBlock,
@@ -85,9 +87,7 @@ export default async function CaseStudyPage({
             </span>
           </div>
 
-          <h1 className="mt-6 font-display text-display-l font-semibold tracking-tight text-text">
-            {project.title}
-          </h1>
+          <CaseStudyTitle title={project.title} />
           <p className="measure mt-5 text-lg leading-relaxed text-text-muted">
             {project.fullDescription}
           </p>
@@ -173,6 +173,13 @@ export default async function CaseStudyPage({
           title="Architecture"
           body={project.architecture}
         />
+
+        {/* Tech-stack 3D cluster (decorative) + accessible label row */}
+        {project.technologies.length > 0 && (
+          <div className="-mt-2 pb-10 md:pb-12">
+            <TechStackVisual technologies={project.technologies} />
+          </div>
+        )}
 
         {/* Key features — honest states */}
         <section className="border-t border-line py-10 md:py-12">

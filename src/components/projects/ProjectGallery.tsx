@@ -63,7 +63,7 @@ export function ProjectGallery({
                     className="group relative block w-full outline-none"
                     aria-label={`View ${title} screenshot ${i + 1} full size`}
                   >
-                    <GalleryTile src={src} index={i} />
+                    <GalleryTile src={src} index={i} active={selected === i} />
                     <span className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded border border-line-strong bg-bg/70 text-text-muted opacity-0 backdrop-blur transition-opacity group-hover:opacity-100">
                       <Maximize2 className="h-4 w-4" />
                     </span>
@@ -148,10 +148,13 @@ function GalleryTile({
   src,
   index,
   large,
+  active,
 }: {
   src: string;
   index: number;
   large?: boolean;
+  /** When this is the active slide, apply a slow Ken Burns scale. */
+  active?: boolean;
 }) {
   const name = src.split("/").pop()?.replace(/\.\w+$/, "") ?? `shot-${index}`;
   return (
@@ -161,9 +164,14 @@ function GalleryTile({
         large ? "aspect-video rounded-md" : "aspect-[16/10]",
       )}
     >
+      {/* Slow Ken Burns scale on the active slide (motion-safe only).
+          When real <Image>s replace the texture, wrap them in this layer. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 opacity-50"
+        className={cn(
+          "absolute inset-0 opacity-50 transition-transform duration-8000 ease-linear",
+          active ? "motion-safe:scale-105" : "scale-100",
+        )}
         style={{
           backgroundImage:
             "radial-gradient(circle at 1px 1px, rgba(245,245,243,0.06) 1px, transparent 0)",

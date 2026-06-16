@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Card } from "@/components/Card";
 import { StatusBadge } from "@/components/StatusBadge";
+import { TiltWrapper } from "@/components/TiltWrapper";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/types/project";
 
@@ -17,13 +18,21 @@ interface ProjectCardProps {
   className?: string;
   /** Compact variant for dense rails. */
   compact?: boolean;
+  /** Opt into the 3D hover tilt + accent glow (used by the home rail). */
+  tilt?: boolean;
 }
 
-export function ProjectCard({ project, className, compact }: ProjectCardProps) {
-  return (
+export function ProjectCard({
+  project,
+  className,
+  compact,
+  tilt,
+}: ProjectCardProps) {
+  const inner = (
     <Card interactive accentHover className={cn("h-full", className)}>
       <Link
         href={`/projects/${project.slug}`}
+        data-cursor="view"
         className="group flex h-full flex-col p-6 outline-none md:p-7"
       >
         <div className="flex items-start justify-between gap-4">
@@ -62,4 +71,9 @@ export function ProjectCard({ project, className, compact }: ProjectCardProps) {
       </Link>
     </Card>
   );
+
+  if (tilt) {
+    return <TiltWrapper className={cn("h-full", className)}>{inner}</TiltWrapper>;
+  }
+  return inner;
 }

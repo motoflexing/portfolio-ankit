@@ -2,8 +2,10 @@
 
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { ProjectCard } from "@/components/ProjectCard";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 import type { Project } from "@/types/project";
 
 /**
@@ -13,6 +15,7 @@ import type { Project } from "@/types/project";
  * /projects grid.
  */
 export function ProjectRail({ projects }: { projects: Project[] }) {
+  const reduced = useReducedMotion();
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     loop: false,
@@ -48,14 +51,29 @@ export function ProjectRail({ projects }: { projects: Project[] }) {
         role="region"
         aria-label="Selected projects, swipe to browse"
       >
-        <div className="-ml-5 flex">
-          {projects.map((project) => (
-            <div
+        {/* Perspective on the track so each card's hover tilt reads as depth */}
+        <div className="-ml-5 flex [perspective:1200px]">
+          {projects.map((project, i) => (
+            <motion.div
               key={project.slug}
               className="min-w-0 shrink-0 grow-0 basis-[85%] pl-5 sm:basis-[55%] lg:basis-[42%]"
+              initial={
+                reduced
+                  ? false
+                  : { clipPath: "inset(0 100% 0 0)", opacity: 0 }
+              }
+              whileInView={
+                reduced ? undefined : { clipPath: "inset(0 0% 0 0)", opacity: 1 }
+              }
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{
+                duration: 0.6,
+                delay: i * 0.1,
+                ease: [0.22, 1, 0.36, 1],
+              }}
             >
-              <ProjectCard project={project} className="h-full" />
-            </div>
+              <ProjectCard project={project} className="h-full" tilt />
+            </motion.div>
           ))}
         </div>
       </div>

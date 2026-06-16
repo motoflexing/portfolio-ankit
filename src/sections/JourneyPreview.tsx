@@ -1,17 +1,12 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { Section, SectionHeading } from "@/components/Section";
-import { Reveal } from "@/components/Reveal";
+import { GlassTile } from "@/components/GlassTile";
+import { SectionReveal } from "@/components/SectionReveal";
+import { Timeline3DNode } from "@/components/Timeline3DNode";
 import { journey } from "@/data/journey";
 
-/**
- * Development Journey preview — a condensed glimpse of the progression from
- * creator to product builder, linking to the full /journey timeline (built
- * out in Phase 8). Shows first and last stages plus the phase arc; not every
- * stage (the home page stays curated).
- */
 export function JourneyPreview() {
-  // Show a curated slice: the opening, a midpoint, and the latest stages.
   const preview = [journey[0], journey[5], journey[10], journey[12]];
 
   return (
@@ -20,7 +15,7 @@ export function JourneyPreview() {
         <SectionHeading
           eyebrow="From creator to builder"
           title="A non-linear path into building products"
-          lead="I came to engineering through content creation and storytelling — which is exactly why I think about products, not just code."
+          lead="I came to engineering through content creation and storytelling."
         />
         <Link
           href="/journey"
@@ -31,22 +26,23 @@ export function JourneyPreview() {
         </Link>
       </div>
 
-      <ol className="mt-12 grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-        {preview.map((stage, i) => (
-          <Reveal as="li" key={stage.index} delay={i * 0.05}>
-            <div className="flex h-full flex-col bg-surface p-6">
-              <div className="flex items-center justify-between">
-                <span className="section-index">{stage.index}</span>
-                <span className="eyebrow text-text-faint">{stage.phase}</span>
+      <ol className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {preview.map((stage, index) => (
+          <SectionReveal as="li" key={stage.index} delay={index * 0.04} className="h-full">
+            <GlassTile className="h-full">
+              <div className="flex h-full flex-col p-6">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <Timeline3DNode active={index === preview.length - 1} className="scale-[0.82]" />
+                    <span className="section-index">{stage.index}</span>
+                  </div>
+                  <span className="eyebrow text-text-faint">{stage.phase}</span>
+                </div>
+                <h3 className="text-subheading mt-5 text-text">{stage.title}</h3>
+                <p className="text-small mt-3 text-text-muted">{stage.description}</p>
               </div>
-              <h3 className="text-subheading mt-5 text-text">
-                {stage.title}
-              </h3>
-              <p className="text-small mt-2 text-text-muted">
-                {stage.description}
-              </p>
-            </div>
-          </Reveal>
+            </GlassTile>
+          </SectionReveal>
         ))}
       </ol>
     </Section>

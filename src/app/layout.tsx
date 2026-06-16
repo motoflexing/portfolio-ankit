@@ -4,6 +4,7 @@ import "./globals.css";
 import { fontVariables } from "@/lib/fonts";
 import { site } from "@/data/site";
 import { GrainOverlay } from "@/components/GrainOverlay";
+import { SpaceDustOverlay } from "@/components/SpaceDustOverlay";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { CustomCursor } from "@/components/CustomCursor";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
@@ -83,6 +84,7 @@ export default function RootLayout({
         </a>
 
         {/* Cinematic chrome — fixed, pointer-events-none, a11y-inert */}
+        <SpaceDustOverlay />
         <ScrollProgress />
         <GrainOverlay />
         <CustomCursor />

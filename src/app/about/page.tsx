@@ -5,6 +5,7 @@ import { Reveal } from "@/components/Reveal";
 import { Card, CardBody } from "@/components/Card";
 import { ActionButton } from "@/components/ActionButton";
 import { SkillsMatrix } from "@/components/SkillsMatrix";
+import { WireframeBackdrop } from "@/components/WireframeBackdrop";
 import { MetaRow } from "@/components/projects/CaseStudyBlocks";
 import { buildMetadata } from "@/lib/seo";
 import { site } from "@/data/site";
@@ -27,21 +28,37 @@ export default function AboutPage() {
   return (
     <>
       {/* Intro */}
-      <Section index="00" label="About" className="pt-16 md:pt-20">
-        <p className="eyebrow mb-6">{aboutIntro.eyebrow}</p>
-        <h1 className="max-w-2xl font-display text-display-l font-medium tracking-tight text-text">
-          {aboutIntro.heading}
-        </h1>
-        <div className="text-body measure mt-6 space-y-4 text-text-muted">
-          {aboutIntro.paragraphs.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
+      <Section
+        index="00"
+        label="About"
+        className="relative overflow-hidden pt-16 md:pt-20"
+      >
+        {/* Floating wireframe sphere — decorative, very low opacity, sits to the
+            right of the reading column so it never competes with the text. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-12 top-0 hidden h-[30rem] w-[30rem] opacity-[0.18] md:block lg:right-[-2rem]"
+        >
+          <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(229,72,77,0.18),transparent_58%)] blur-3xl" />
+          <WireframeBackdrop className="h-full w-full" />
         </div>
-        <div className="mt-9">
-          <ActionButton href={site.resumeUrl} variant="outline" external>
-            Download resume
-            <ArrowUpRight />
-          </ActionButton>
+
+        <div className="relative">
+          <p className="eyebrow mb-6">{aboutIntro.eyebrow}</p>
+          <h1 className="max-w-2xl font-display text-display-l font-medium tracking-tight text-text">
+            {aboutIntro.heading}
+          </h1>
+          <div className="text-body measure mt-6 space-y-4 text-text-muted">
+            {aboutIntro.paragraphs.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+          <div className="mt-9">
+            <ActionButton href={site.resumeUrl} variant="outline" external>
+              Download resume
+              <ArrowUpRight />
+            </ActionButton>
+          </div>
         </div>
       </Section>
 

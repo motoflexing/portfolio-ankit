@@ -3,23 +3,20 @@
 import dynamic from "next/dynamic";
 import { LazyScene } from "@/components/three/LazyScene";
 
-// Client-only, code-split skills-web canvas.
-const SkillsWebScene = dynamic(
-  () => import("@/components/three/SkillsWebScene"),
+const TechCoreScene = dynamic(
+  () => import("@/components/three/TechCoreScene"),
   { ssr: false },
 );
 
 /**
- * Decorative interactive skills web for the home Capabilities section. It sits
- * alongside the honest, screen-reader-friendly grid (which remains the source
- * of the actual skill content + honesty tags), so removing the canvas under
- * reduced-motion loses nothing meaningful.
+ * Decorative tech-core object for the Capabilities section. The actual skills
+ * stay in semantic content cards beside it; the canvas is purely atmospheric.
  */
 export function SkillsWeb() {
   return (
     <LazyScene
-      Scene={SkillsWebScene}
-      className="mx-auto aspect-square w-full max-w-[320px]"
+      Scene={TechCoreScene}
+      className="mx-auto aspect-square w-full max-w-[360px]"
     />
   );
 }

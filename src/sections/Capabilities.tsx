@@ -1,12 +1,14 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { Section, SectionHeading } from "@/components/Section";
-import { Reveal } from "@/components/Reveal";
 import {
   SkillLevelDot,
   SkillLevelLegend,
 } from "@/components/SkillLevelTag";
+import { SectionSignalOrb } from "@/components/SectionSignalOrb";
 import { SkillsWeb } from "@/components/SkillsWeb";
+import { GlassTile } from "@/components/GlassTile";
+import { SectionReveal } from "@/components/SectionReveal";
 import { skillGroups } from "@/data/skills";
 
 /**
@@ -16,7 +18,13 @@ import { skillGroups } from "@/data/skills";
  */
 export function Capabilities() {
   return (
-    <Section index="03" label="Capabilities">
+    <Section index="03" label="Capabilities" className="relative overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-6 top-12 hidden lg:block"
+      >
+        <SectionSignalOrb />
+      </div>
       <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-center lg:gap-12">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between lg:flex-col lg:items-start">
           <SectionHeading
@@ -29,32 +37,35 @@ export function Capabilities() {
 
         {/* Decorative interactive skills web — the honest content lives in the
             grid below, so this is purely a visual layer (aria-hidden). */}
-        <div aria-hidden="true">
+        <div aria-hidden="true" className="relative">
+          <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(229,72,77,0.16),transparent_56%)] blur-3xl" />
           <SkillsWeb />
         </div>
       </div>
 
-      <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-12 grid auto-rows-fr gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
         {skillGroups.map((group, i) => (
-          <Reveal key={group.name} delay={(i % 3) * 0.05}>
-            <div className="flex h-full flex-col bg-surface p-6">
-              <div className="flex items-baseline justify-between">
-                <h3 className="text-subheading text-text">{group.name}</h3>
-                <span className="section-index">{group.index}</span>
+          <SectionReveal key={group.name} delay={(i % 3) * 0.05} className="h-full">
+            <GlassTile className="h-full">
+              <div className="flex h-full flex-col p-6">
+                <div className="flex items-baseline justify-between">
+                  <h3 className="text-subheading text-text">{group.name}</h3>
+                  <span className="section-index">{group.index}</span>
+                </div>
+                <ul className="mt-4 flex flex-col gap-2.5">
+                  {group.skills.map((skill) => (
+                    <li
+                      key={skill.name}
+                      className="text-small flex items-center gap-2.5 text-text-muted"
+                    >
+                      <SkillLevelDot level={skill.level} />
+                      <span>{skill.name}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="mt-4 flex flex-col gap-2.5">
-                {group.skills.map((skill) => (
-                  <li
-                    key={skill.name}
-                    className="text-small flex items-center gap-2.5 text-text-muted"
-                  >
-                    <SkillLevelDot level={skill.level} />
-                    <span>{skill.name}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
+            </GlassTile>
+          </SectionReveal>
         ))}
       </div>
 

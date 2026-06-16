@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { Section } from "@/components/Section";
 import { ContactForm } from "@/components/ContactForm";
+import { PortalRingBackdrop } from "@/components/PortalRingBackdrop";
 import { SocialIcon } from "@/components/SocialIcons";
 import { buildMetadata } from "@/lib/seo";
 import { site } from "@/data/site";
@@ -15,20 +16,28 @@ export const metadata: Metadata = buildMetadata({
 });
 
 const channels = [
-  { platform: "linkedin" as const, label: socials.linkedin.label, handle: socials.linkedin.handle, url: socials.linkedin.url },
-  { platform: "github" as const, label: socials.github.label, handle: socials.github.handle, url: socials.github.url },
+  {
+    platform: "linkedin" as const,
+    label: socials.linkedin.label,
+    handle: socials.linkedin.handle,
+    url: socials.linkedin.url,
+  },
+  {
+    platform: "github" as const,
+    label: socials.github.label,
+    handle: socials.github.handle,
+    url: socials.github.url,
+  },
 ];
 
 export default function ContactPage() {
   return (
     <Section index="00" label="Contact" className="pt-16 md:pt-20">
       <div className="grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
-        {/* Form column */}
         <div>
           <p className="eyebrow mb-6">Get in touch</p>
           <h1 className="font-display text-display-l font-medium tracking-tight text-text">
-            Let&apos;s build something{" "}
-            <span className="text-accent">useful</span>.
+            Let&apos;s build something <span className="text-accent">useful</span>.
           </h1>
           <p className="text-body measure mt-5 text-text-muted">
             I&apos;m open to junior software roles, internships, freelance
@@ -41,12 +50,14 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Channels column */}
         <aside className="h-fit lg:sticky lg:top-24">
+          <div className="mb-6 hidden h-36 lg:block">
+            <PortalRingBackdrop className="h-full w-full" />
+          </div>
+
           <div className="card-hairline p-6 md:p-7">
             <p className="eyebrow mb-5">Direct channels</p>
 
-            {/* Email */}
             <a
               href={`mailto:${site.email}`}
               className="group flex items-center gap-3 border-b border-line py-4 text-sm text-text transition-colors hover:text-accent"
@@ -55,7 +66,6 @@ export default function ContactPage() {
               {site.email}
             </a>
 
-            {/* Socials */}
             {channels.map((c) => (
               <a
                 key={c.platform}
@@ -77,13 +87,11 @@ export default function ContactPage() {
               </a>
             ))}
 
-            {/* Location — general only, no phone/precise address */}
             <div className="flex items-center gap-3 border-b border-line py-4 text-sm text-text-muted">
               <MapPin className="h-4 w-4 text-text-faint" />
               {site.base}
             </div>
 
-            {/* Availability */}
             <div className="flex items-start gap-3 py-4">
               <span className="relative mt-1 inline-flex h-2 w-2 shrink-0">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-accent/40 motion-safe:animate-ping" />
@@ -94,7 +102,6 @@ export default function ContactPage() {
               </p>
             </div>
 
-            {/* Resume */}
             <a
               href={site.resumeUrl}
               target="_blank"

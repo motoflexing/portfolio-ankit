@@ -65,8 +65,8 @@ export function SkillsMatrix() {
                 className={cn(
                   "rounded-full border px-4 py-1.5 font-mono text-xs uppercase tracking-wide transition-colors",
                   active
-                    ? "border-accent bg-accent/10 text-text"
-                    : "border-line-strong text-text-muted hover:border-text-faint hover:text-text",
+                    ? "border-accent bg-accent/12 text-text shadow-[0_0_20px_rgba(229,72,77,0.12)]"
+                    : "border-white/10 bg-white/[0.02] text-text-muted hover:border-text-faint hover:text-text",
                 )}
               >
                 {tab}
@@ -78,16 +78,19 @@ export function SkillsMatrix() {
       </div>
 
       {/* Groups */}
-      <div className="mt-10 grid gap-px overflow-hidden rounded-lg border border-line bg-line">
+      <div className="mt-10 grid gap-3">
         {groups.map((group) => {
           const isCollapsed = collapsed.has(group.name);
           return (
-            <div key={group.name} className="bg-surface">
+            <div
+              key={group.name}
+              className="overflow-hidden rounded-lg border border-white/10 bg-[linear-gradient(180deg,rgba(24,24,28,0.78),rgba(11,11,13,0.9))]"
+            >
               <button
                 type="button"
                 onClick={() => toggle(group.name)}
                 aria-expanded={!isCollapsed}
-                className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left outline-none transition-colors hover:bg-surface-2"
+                className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left outline-none transition-colors hover:bg-white/[0.03]"
               >
                 <span className="flex items-baseline gap-4">
                   <span className="section-index">{group.index}</span>
@@ -119,7 +122,7 @@ export function SkillsMatrix() {
                       {group.skills.map((skill) => (
                         <li
                           key={skill.name}
-                          className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-sm text-text-muted"
+                          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-sm text-text-muted"
                           title={skill.note}
                         >
                           <SkillLevelDot level={skill.level} />

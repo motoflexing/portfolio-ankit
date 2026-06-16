@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
+import { motion } from "framer-motion";
 import { Send, Loader2 } from "lucide-react";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -48,9 +50,11 @@ const EMPTY: FormState = {
  * aria-describedby and announced with role="alert".
  */
 export function ContactForm() {
+  const reduced = useReducedMotion();
   const [values, setValues] = useState<FormState>(EMPTY);
   const [errors, setErrors] = useState<ContactErrors>({});
   const [submitting, setSubmitting] = useState(false);
+  const [sent, setSent] = useState(false);
 
   const set = <K extends keyof FormState>(key: K, value: FormState[K]) => {
     setValues((v) => ({ ...v, [key]: value }));
@@ -93,11 +97,16 @@ export function ContactForm() {
       toast.success("Thanks — your message is on its way.");
       setValues(EMPTY);
       setErrors({});
+      setSent(true);
     } catch {
       toast.error("Network error. Please try again, or email directly.");
     } finally {
       setSubmitting(false);
     }
+  }
+
+  if (sent) {
+    return <SuccessPanel reduced={reduced} onReset={() => setSent(false)} />;
   }
 
   return (
@@ -178,7 +187,13 @@ export function ContactForm() {
         />
       </Field>
 
-      <ActionButton type="submit" variant="primary" size="lg" disabled={submitting}>
+      <ActionButton
+        type="submit"
+        variant="primary"
+        size="lg"
+        magnetic
+        disabled={submitting}
+      >
         {submitting ? (
           <>
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -215,7 +230,16 @@ function Field({
         {label}
         {required && <span className="ml-1 text-accent">*</span>}
       </Label>
-      {children}
+      {/* Control + animated accent underline that grows from the left on focus.
+          `group` + focus-within drives scaleX 0->1 (CSS transition, so it's
+          inert/instant under reduced-motion via the global transition zeroing). */}
+      <div className="group relative">
+        {children}
+        <span
+          aria-hidden="true"
+          className="absolute -bottom-px left-0 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-300 ease-out group-focus-within:scale-x-100"
+        />
+      </div>
       {error && (
         <p
           id={`${id}-error`}
@@ -225,6 +249,72 @@ function Field({
           {error}
         </p>
       )}
+    </div>
+  );
+}
+
+/**
+ * Success state shown after a message sends. A hand-coded SVG checkmark draws
+ * itself (Framer pathLength) — no animation library beyond what's installed.
+ * Under reduced-motion the check is simply drawn (no animation).
+ */
+function SuccessPanel({
+  reduced,
+  onReset,
+}: {
+  reduced: boolean;
+  onReset: () => void;
+}) {
+  return (
+    <div
+      role="status"
+      aria-live="polite"
+      className="card-hairline flex flex-col items-center gap-5 p-10 text-center"
+    >
+      <svg
+        width="64"
+        height="64"
+        viewBox="0 0 64 64"
+        fill="none"
+        aria-hidden="true"
+      >
+        <motion.circle
+          cx="32"
+          cy="32"
+          r="28"
+          stroke="var(--accent)"
+          strokeWidth="2"
+          initial={reduced ? false : { pathLength: 0 }}
+          animate={reduced ? undefined : { pathLength: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        />
+        <motion.path
+          d="M20 33 L29 42 L45 24"
+          stroke="var(--accent)"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          initial={reduced ? false : { pathLength: 0 }}
+          animate={reduced ? undefined : { pathLength: 1 }}
+          transition={{ duration: 0.4, ease: "easeOut", delay: 0.45 }}
+        />
+      </svg>
+      <div>
+        <h3 className="font-display text-h3 font-medium text-text">
+          Message sent
+        </h3>
+        <p className="measure mt-2 text-sm leading-relaxed text-text-muted">
+          Thanks for reaching out — I&apos;ll get back to you. In the meantime,
+          feel free to email directly.
+        </p>
+      </div>
+      <button
+        type="button"
+        onClick={onReset}
+        className="font-mono text-xs uppercase tracking-widest text-text-muted underline-offset-4 transition-colors hover:text-text hover:underline"
+      >
+        Send another
+      </button>
     </div>
   );
 }

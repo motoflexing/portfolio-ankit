@@ -1,11 +1,13 @@
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { ActionButton } from "@/components/ActionButton";
+import { TorusKnotBackdrop } from "@/components/TorusKnotBackdrop";
 import { site } from "@/data/site";
 
 /**
  * Closing contact CTA on the home page. Confident, not desperate — leads into
  * the full /contact page. Carries the availability status from data/site.ts.
+ * A slowly-rotating wireframe torus knot sits behind it for a premium backdrop.
  */
 export function ContactCTA() {
   return (
@@ -14,7 +16,15 @@ export function ContactCTA() {
       aria-label="Get in touch"
     >
       <Reveal>
-        <div className="card-hairline relative overflow-hidden p-10 md:p-16">
+        <div className="relative overflow-hidden rounded-lg border border-line bg-surface p-10 md:p-16">
+          {/* Wireframe torus-knot backdrop — decorative, low opacity */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-40"
+          >
+            <TorusKnotBackdrop className="absolute right-0 top-1/2 h-[140%] w-2/3 -translate-y-1/2" />
+          </div>
+
           {/* faint accent corner glow */}
           <div
             aria-hidden="true"

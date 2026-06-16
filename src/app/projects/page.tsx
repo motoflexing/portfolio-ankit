@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Section, SectionHeading } from "@/components/Section";
+import { AnimatedHeading } from "@/components/AnimatedHeading";
 import { ProjectShowcase } from "@/components/projects/ProjectShowcase";
 import { ProjectGrid } from "@/components/projects/ProjectGrid";
 import { projects, featuredProjects, projectCategories } from "@/data/projects";
+import { projectsIntro } from "@/data/projects-page";
 
 export const metadata: Metadata = {
   title: "Work",
@@ -16,12 +18,19 @@ export default function ProjectsPage() {
     <>
       {/* Showcase */}
       <Section index="01" label="Work" className="pb-10 md:pb-12">
-        <SectionHeading
+        {/* Oversized animated word — letters drop into place */}
+        <AnimatedHeading
           as="h1"
-          eyebrow="Selected work"
-          title="Products, prototypes & experiments"
-          lead="A look at what I've built — from a live multi-tenant SaaS to honest works-in-progress. Status is always shown truthfully; nothing unfinished is dressed up as complete."
+          text={projectsIntro.heroWord}
+          className="font-display text-display-xl font-semibold leading-[0.9] tracking-tight text-text"
         />
+        <div className="mt-6">
+          <SectionHeading
+            eyebrow={projectsIntro.eyebrow}
+            title={projectsIntro.title}
+            lead={projectsIntro.lead}
+          />
+        </div>
         <div className="mt-12">
           <ProjectShowcase projects={featuredProjects} />
         </div>
@@ -34,9 +43,9 @@ export default function ProjectsPage() {
         className="border-t border-line pt-10 md:pt-12"
       >
         <SectionHeading
-          eyebrow="Everything"
-          title="Browse all projects"
-          lead="Filter by category. Each card shows its real status, ownership, and stack."
+          eyebrow={projectsIntro.allEyebrow}
+          title={projectsIntro.allTitle}
+          lead={projectsIntro.allLead}
         />
         <div className="mt-10">
           <ProjectGrid projects={projects} categories={projectCategories} />

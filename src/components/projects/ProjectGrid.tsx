@@ -34,7 +34,7 @@ export function ProjectGrid({
 
   return (
     <div>
-      {/* Filter bar */}
+      {/* Filter bar — active pill carries a sliding accent underline */}
       <div
         role="tablist"
         aria-label="Filter projects by category"
@@ -54,7 +54,7 @@ export function ProjectGrid({
               aria-selected={active}
               onClick={() => setFilter(cat)}
               className={cn(
-                "inline-flex items-center gap-2 rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-wide transition-colors",
+                "relative inline-flex items-center gap-2 rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-wide transition-colors",
                 active
                   ? "border-accent bg-accent/10 text-text"
                   : "border-line-strong text-text-muted hover:border-text-faint hover:text-text",
@@ -69,25 +69,37 @@ export function ProjectGrid({
               >
                 {count}
               </span>
+              {/* Sliding underline shared across pills via layoutId */}
+              {active && (
+                <motion.span
+                  layoutId={reduced ? undefined : "filter-underline"}
+                  className="absolute inset-x-3 -bottom-px h-0.5 rounded-full bg-accent"
+                  transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                />
+              )}
             </button>
           );
         })}
       </div>
 
-      {/* Grid */}
+      {/* Grid — on filter change, cards exit upward and enter from above */}
       <motion.div
         layout={!reduced}
         className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
       >
         <AnimatePresence mode="popLayout">
-          {visible.map((project) => (
+          {visible.map((project, i) => (
             <motion.div
               key={project.slug}
               layout={!reduced}
-              initial={reduced ? false : { opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={reduced ? undefined : { opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              initial={reduced ? false : { opacity: 0, y: -24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reduced ? undefined : { opacity: 0, y: -32 }}
+              transition={{
+                duration: 0.4,
+                delay: reduced ? 0 : Math.min(i, 6) * 0.04,
+                ease: [0.22, 1, 0.36, 1],
+              }}
             >
               <ProjectCard project={project} />
             </motion.div>

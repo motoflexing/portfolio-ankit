@@ -268,7 +268,8 @@
    Custom cursor (desktop only) — base styles
    ============================================================ */
 .cursor-dot,
-.cursor-ring {
+.cursor-ring,
+.cursor-halo {
   position: fixed;
   top: 0;
   left: 0;
@@ -284,22 +285,84 @@
   background-color: var(--accent);
 }
 .cursor-ring {
+  display: grid;
+  place-items: center;
   width: 34px;
   height: 34px;
   margin: -17px 0 0 -17px;
   border: 1px solid var(--line-strong);
   transition:
-    width 0.18s ease,
-    height 0.18s ease,
+    width 0.22s ease,
+    height 0.22s ease,
+    margin 0.22s ease,
     border-color 0.18s ease,
     background-color 0.18s ease;
 }
+
+/* Large, faint accent ring trailing far behind the pointer */
+.cursor-halo {
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  border: 1px solid var(--accent);
+  opacity: 0.15;
+  z-index: 69;
+}
+
+/* Generic interactive hover — slight scale, accent edge */
 .cursor-ring[data-active="true"] {
   width: 52px;
   height: 52px;
   margin: -26px 0 0 -26px;
   border-color: var(--accent);
   background-color: rgba(229, 72, 77, 0.06);
+}
+
+/* Context: link — ring fills accent at low opacity */
+.cursor-ring[data-cursor-state="link"] {
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  border-color: var(--accent);
+  background-color: rgba(229, 72, 77, 0.2);
+}
+
+/* Context: view — expands to 80px and reveals the VIEW label */
+.cursor-ring[data-cursor-state="view"] {
+  width: 80px;
+  height: 80px;
+  margin: -40px 0 0 -40px;
+  border-color: var(--accent);
+  background-color: rgba(229, 72, 77, 0.08);
+}
+
+/* Context: drag — shows the drag glyph */
+.cursor-ring[data-cursor-state="drag"] {
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  border-color: var(--accent);
+  background-color: rgba(229, 72, 77, 0.08);
+}
+
+/* Context labels inside the ring (hidden until their state is active) */
+.cursor-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: var(--text);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.cursor-label--drag {
+  font-size: 1rem;
+  letter-spacing: 0;
+}
+.cursor-ring[data-cursor-state="view"] .cursor-label--view {
+  opacity: 1;
+}
+.cursor-ring[data-cursor-state="drag"] .cursor-label--drag {
+  opacity: 1;
 }
 /* Hide native cursor only when custom cursor is active */
 body[data-custom-cursor="true"] {

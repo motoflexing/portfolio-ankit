@@ -88,6 +88,7 @@ export function ActionButton(props: ActionButtonProps) {
           target="_blank"
           rel="noopener noreferrer"
           className={classes}
+          data-cursor="link"
           {...rest}
         >
           {children}
@@ -99,6 +100,7 @@ export function ActionButton(props: ActionButtonProps) {
         ref={ref as React.Ref<HTMLAnchorElement>}
         href={href}
         className={classes}
+        data-cursor="link"
         {...rest}
       >
         {children}
@@ -111,6 +113,7 @@ export function ActionButton(props: ActionButtonProps) {
     <button
       ref={ref as React.Ref<HTMLButtonElement>}
       className={classes}
+      data-cursor="link"
       {...rest}
     >
       {children}
